@@ -4,10 +4,10 @@ A multi-model cross-evaluation harness testing **8 local Ollama models** across 
 
 ---
 
-## 🎯 Benchmark Prompt & Provenance (`todays_q.txt`)
+## 🎯 Benchmark Prompt (`todays_q.txt`)
 
-* **Edition Date:** `25.11.26`
-* **Edition Owner:** `mistral-nemo:12b` (Acquired via `DOORMAN_TICKET`, rewritten via `CROUPIER_REWRITE` with `0.736` drift, and locked via `OFFICER_LOCK` as House Officer of the Day)
+* **Prompt Date:** November 25, 2026
+* **Prompt Author:** `mistral-nemo:12b`
 * **Domain:** Evolutionary Psychology, Mating Markets & Game Theory
 
 > **Exact Benchmark Question:**
@@ -32,7 +32,7 @@ A multi-model cross-evaluation harness testing **8 local Ollama models** across 
 | Rank | Generator Model | Pass Rate | Avg. Score | Avg. Loops | Avg. Time (Pass) |
 | :--- | :--- | :---: | :---: | :---: | :---: |
 | 🥇 **1** | `huihui_ai/qwen3-abliterated:8b` | 21 / 21 | **88.14** | 1.10 | 167.55s |
-| 🥈 **2** | `mistral-nemo:12b` *(Edition Owner)* | 21 / 21 | **86.24** | 1.05 | 149.77s |
+| 🥈 **2** | `mistral-nemo:12b` *(Prompt Author)* | 21 / 21 | **86.24** | 1.05 | 149.77s |
 | 🥉 **3** | `phi4:latest` | 20 / 21 | **86.20** | 1.05 | 190.78s* |
 | **4** | `dolphin3:latest` | 21 / 21 | **84.95** | 1.48 | 139.61s |
 | **5** | `qwen2.5-coder:14b` | 21 / 21 | **84.86** | 1.05 | 210.65s |
@@ -54,7 +54,7 @@ How each model behaved when acting as an automated judge for the other 7 models:
 | `dolphin3:latest` | **84.76** | 1.00 | 0.0% | 116.24s | Fast single-pass judge |
 | `llama3.2:3b` | **84.90** | 1.48 | 19.0% | 117.84s | Lenient on passes (`88.15` avg), but triggered 8-loop `FAIL` on Case 159 |
 | `qwen2.5-coder:14b` | **85.00** | 1.14 | 14.3% | 126.35s | Balanced baseline scorer |
-| `jaahas/gemma-2-9b-it-abliterated:latest` | **85.43** | **1.86** | **52.4%** | 182.93s | Most demanding editor (forced retries on 11 of 21 cases, including a 7-loop run on Case 70) |
+| `jaahas/gemma-2-9b-it-abliterated:latest` | **85.43** | **1.86** | **52.4%** | 182.93s | Most demanding grader (forced retries on 11 of 21 cases, including a 7-loop run on Case 70) |
 | `qwen2.5-coder:7b` | **85.86** | 1.10 | 9.5% | **114.30s** | Fastest overall grader; most generous baseline |
 
 ---
@@ -72,7 +72,7 @@ How each model behaved when acting as an automated judge for the other 7 models:
 ## 💡 Key Takeaways & Insights
 
 1. **`qwen3-abliterated:8b` Extends Its Streak to 4 Straight Wins (`88.14` Avg):** Facing a politically sensitive evolutionary psychology prompt authored by `mistral-nemo:12b`, `qwen3-abliterated:8b` claimed 1st place for the fourth consecutive run (`86.95` → `88.86` → `90.52` → `88.14`), clearing the field by **+1.90 points**.
-2. **Home-Field Advantage Paid Off for `mistral-nemo:12b`:** After rewriting and locking `25.11.26` as House Officer of the Day (`drift: 0.736`), `mistral-nemo:12b` rode its own evolutionary-psychology prompt to a **2nd-place finish (`86.24`)**—proving that controlling the edition question directly translates into leaderboard advantage.
+2. **Prompt Alignment Paid Off for `mistral-nemo:12b`:** Authoring the prompt translated into strong performance for `mistral-nemo:12b`, which surged to a **2nd-place finish (`86.24`)** and passed 20 of 21 evaluations on the first loop.
 3. **First Hard `FAIL` in the Series (`Case 159`):** `qwen2.5-coder:7b` (GEN) paired with `llama3.2:3b` (VAL) under the `Objectivity` lens exhausted all **8 rewrite loops** (`246.07s`) and ended in a hard **`FAIL` (`Score: 20`)**—the only non-timeout failure across all 168 cases.
 4. **The `Case 109` Timeout Returned:** After briefly clearing on Nov 24, the deterministic timeout on `Case 109` (`GEN: phi4:latest | VAL: huihui_ai/qwen3-abliterated:8b | LENS: conciseness`) reappeared, stalling for `1962.25s` (~32.7 minutes) before throwing an `ERROR`.
-5. **`Gemma-2-9B` Dominated Editorial Gatekeeping:** Acting as validator, `jaahas/gemma-2-9b-it-abliterated` forced retry loops on **52.4% of all cases it judged** (11 of 21)—including pushing `llama3.2:3b` through **7 consecutive loops** on `Case 70` (`Conciseness`) before finally granting an `85`.
+5. **`Gemma-2-9B` Enforced Strict Gatekeeping:** Acting as validator, `jaahas/gemma-2-9b-it-abliterated` forced retry loops on **52.4% of all cases it judged** (11 of 21)—including pushing `llama3.2:3b` through **7 consecutive loops** on `Case 70` (`Conciseness`) before finally granting an `85`.
